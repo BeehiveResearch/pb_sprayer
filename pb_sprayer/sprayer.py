@@ -4,13 +4,13 @@ from rclpy.node import Node
 
 from std_srvs.srv import SetBool
 
-SPRAYER_PIN = 9
+SPRAYER_PIN = 7 # BOARD
 
 class Sprayer(Node):
     def __init__(self):
         super().__init__('sprayer_node')
 
-        GPIO.setmode(GPIO.BCM)
+        GPIO.setmode(GPIO.BOARD)
         GPIO.setup(SPRAYER_PIN, GPIO.OUT, initial=GPIO.LOW)
 
         self.spray_serv = self.create_service(SetBool, 'spray', self.spray)
